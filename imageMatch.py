@@ -61,8 +61,8 @@ def img_match(img_name, img_temp):
         dst_ctr = cv.perspectiveTransform(pts_ctr, m)
         p1_c = [dst_ctr[0][0][0], dst_ctr[0][0][1]]
         print(p1_c)
-        cv.polylines(img_template_color, [np.int32(dst)], True, (0, 128, 0), 5, cv.LINE_AA)
-        cv.circle(img_template_color, [np.int32(dst_ctr)[0][0][0], np.int32(dst_ctr)[0][0][1]], 5, (255, 0, 0), 5)
+        # cv.polylines(img_template_color, [np.int32(dst)], True, (0, 128, 0), 5, cv.LINE_AA)
+        # cv.circle(img_template_color, [np.int32(dst_ctr)[0][0][0], np.int32(dst_ctr)[0][0][1]], 5, (255, 0, 0), 5)
     else:
         print("Not Enough matches are found")
         matches_mask = None
@@ -70,29 +70,28 @@ def img_match(img_name, img_temp):
                        matchesMask=matches_mask, flags=2)
 
 
-def img_test():
+def run_app():
     start_1 = timeit.default_timer()
-    img1 = cv.imread("image/test05_1.jpg", cv.IMREAD_GRAYSCALE)  # Read first image
+    img1 = cv.imread("photo/test05_1.jpg", cv.IMREAD_GRAYSCALE)  # Read first image
     img1 = cv.resize(img1, (0, 0), fx=0.5, fy=0.5)
-    img2 = cv.imread("image/test05_2.jpg", cv.IMREAD_GRAYSCALE)  # Read second image
+    img2 = cv.imread("photo/test05_2.jpg", cv.IMREAD_GRAYSCALE)  # Read second image
     img2 = cv.resize(img2, (0, 0), fx=0.5, fy=0.5)
-    img3 = cv.imread("image/test05_3.jpg", cv.IMREAD_GRAYSCALE)  # Read third image
+    img3 = cv.imread("photo/test05_3.jpg", cv.IMREAD_GRAYSCALE)  # Read third image
     img3 = cv.resize(img3, (0, 0), fx=0.5, fy=0.5)
     stop_1 = timeit.default_timer()
     start_2 = stop_1
-    img_template = cv.imread("image/test_template.jpg", cv.IMREAD_GRAYSCALE)  # Read template image
-    img_template_color = cv.imread("image/test_template_dot.jpg", cv.IMREAD_COLOR)
+    img_template = cv.imread("photo/test_template.jpg", cv.IMREAD_GRAYSCALE)  # Read template image
+    img_template_color = cv.imread("photo/test_template_dot.jpg", cv.IMREAD_COLOR)
     img_match(img1, img_template)
     img_match(img2, img_template)
     img_match(img3, img_template)
     stop_2 = timeit.default_timer()
     print('Loading Time: ', stop_1 - start_1)
     print('Processing Time: ', stop_2 - start_2)
-    show("111", img_template_color)
-    show("111", img_template_color)
-    show("111", img_template_color)
-    show("111", img_template_color)
+    # show("111", img_template_color)
 
+# Use this code to run img match script alone.
+# run_app()
 
 
 

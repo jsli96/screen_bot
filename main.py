@@ -1,8 +1,5 @@
 from flask import Flask, render_template
-# import numpy as np
-# import cv2 as cv
-# import timeit
-# import imageMatch
+from imageMatch import *
 app = Flask(__name__)
 
 
@@ -10,11 +7,11 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+
 @app.route('/run_imgMatch')
-def b_test():
-    print("Hello")
-    print("running image Match")
-    return ()
+def image_match():
+    run_app()
+    return "Image process done"
 
 
 if __name__ == '__main__':
