@@ -4,3 +4,4 @@ The script has three parts:
   1. cloud server code
   2. raspberry pi code
   3. image match code
+  4. web UI
