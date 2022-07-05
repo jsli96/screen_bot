@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Screen Robot</title>
+    <link rel="icon" type="image/x-icon" href="/static/robot_favicon.ico">
+</head>
+<body>
+<button
+    type="button"
+    name="img_match_button"
+    value="Run image match python function"
+    id="img_match_button">
+    Image Match
+</button>
+<p id="img_status">sdscd</p>
+</body>
+<script>
+    $('button#img_match_button').click(function(click){
+        click.preventDefault();
+        $.getJSON('/run_imgMatch');
+        $('p#img_status').load("/static/text");
+    });
+</script>
+
+
+</html>
