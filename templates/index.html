@@ -17,15 +17,31 @@
     id="img_match_button">
     Image Match
 </button>
+<button
+    type="button"
+    name="connect_check_pi_status"
+    value="Connect to the RaspberryPi and check its status"
+    id="connect_check_pi_status">
+    Connect to Pi
+</button>
 <p id="img_status"></p>
 <p id="function_status"></p>
+<p id="pi_status"></p>
 </body>
 <script>
     $('button#img_match_button').click(function(click){
         click.preventDefault();
         $.get('/run_imgMatch', function(data){
             document.getElementById("function_status").innerHTML = data;
-            $('p#img_status').load("static/text")}, "text"
+            $('p#img_status').load("static/text")
+            }, "text"
+        );
+    });
+        $('button#connect_check_pi_status').click(function(click){
+        click.preventDefault();
+        $.get('/pi_status/', function(data){
+            document.getElementById("pi_status").innerHTML = data;
+            }, "text"
         );
     });
 </script>
