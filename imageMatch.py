@@ -1,6 +1,7 @@
 import numpy as np
 import cv2 as cv
 import timeit
+import base64
 MIN_MATCH_COUNT = 10
 FLANN_INDEX_KD_TREE = 0
 
@@ -92,6 +93,9 @@ def run_app():
 
 # Use this code to run img match script alone.
 # run_app()
+
+# img1 = cv.imread("server_img.jpg", cv.IMREAD_GRAYSCALE)
+# show('sds', img1)
 
 
 

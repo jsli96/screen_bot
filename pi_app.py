@@ -1,9 +1,19 @@
-import requests
-import sys
 import socketio
+import cv2 as cv
+import base64
+
+
 URL_LOCAL = 'http://127.0.0.1:5000/'
 URL_CLOUD = 'https://screen-bot-proj.herokuapp.com/'
 sio = socketio.Client()
+
+
+def send_img():
+    img = cv.imread("photo/test.png", cv.IMREAD_GRAYSCALE)  # Read first image
+    img = cv.resize(img, (0, 0), fx=0.5, fy=0.5)
+    size, data = cv.imencode('.png', img)
+    data = base64.b64encode(data)
+    sio.emit('img_data', data)
 
 
 @sio.event
@@ -23,9 +33,9 @@ def disconnect():
 
 
 @sio.on('request img')
-def send_img(data):
+def start_send_img(data):
     print(data)
-    initial_connect = requests.get('http://127.0.0.1:5000/pi_send_img/')
+    send_img()
     return 'OK'
 
 
@@ -37,5 +47,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
+    # send_img()

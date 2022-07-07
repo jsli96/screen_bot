@@ -4,7 +4,7 @@ from gevent import pywsgi
 from geventwebsocket.handler import WebSocketHandler
 import logging
 from imageMatch import *
-
+import base64
 
 app = Flask(__name__)
 socketio = SocketIO(app)
@@ -39,15 +39,17 @@ def pi_status():
         return "pi disconnected!"
 
 
-@app.route('/testing/')
-def socketio_test():
-    msg = {'data': 'hello! This is in testing io'}
-    socketio.emit('worker_msg', msg)
-
-
 @socketio.on('This is test in main function')
 def show_message(data):
+    socketio.emit('request img', 'I\'m server, I want a image from you!')
     print('received message: ' + data)
+
+
+@socketio.on('img_data')
+def receive_img(data):
+    with open('image_on_server.png', 'wb') as f:
+        f.write(base64.decodebytes(data))
+    print('Finished')
 
 
 if __name__ == '__main__':
