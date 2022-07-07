@@ -2,3 +2,6 @@ Flask
 numpy
 gunicorn
 opencv-python-headless
+Flask-SocketIO
+gevent
+gevent-websocket
