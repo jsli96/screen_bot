@@ -1,7 +1,7 @@
 import socketio
 import cv2 as cv
 import base64
-
+from gpiozero import *
 
 URL_LOCAL = 'http://127.0.0.1:5000/'
 URL_CLOUD = 'https://screen-bot-proj.herokuapp.com/'
@@ -32,6 +32,11 @@ def disconnect():
     print("disconnected")
 
 
+@sio.on('receive finished')
+def disconnect():
+    sio.disconnect()
+
+
 @sio.on('request img')
 def start_send_img(data):
     print(data)
@@ -43,6 +48,9 @@ def main():
     sio.connect('http://127.0.0.1:5000/')
     sio.emit('This is test in main function', "It\'s me")
     sio.wait()
+
+
+def run_motor():
 
 
 if __name__ == '__main__':

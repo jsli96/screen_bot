@@ -92,7 +92,7 @@ def run_app():
     # show("111", img_template_color)
 
 # Use this code to run img match script alone.
-# run_app()
+run_app()
 
 # img1 = cv.imread("server_img.jpg", cv.IMREAD_GRAYSCALE)
 # show('sds', img1)
