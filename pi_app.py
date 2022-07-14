@@ -4,10 +4,10 @@ import base64
 from gpiozero import *
 from time import sleep
 from picamera import Picamera
-MOTOR_A_IN_1 = GPIO20
-MOTOR_A_IN_2 =
-MOTOR_B_IN_1 =
-MOTOR_B_IN_2 =
+MOTOR_A_IN_1 = GPIO26
+MOTOR_A_IN_2 = GPIO21
+MOTOR_B_IN_1 = GPIO23
+MOTOR_B_IN_2 = GPIO22
 camera = Picamera()
 URL_LOCAL = 'http://127.0.0.1:5000/'
 URL_CLOUD = 'https://screen-bot-proj.herokuapp.com/'
