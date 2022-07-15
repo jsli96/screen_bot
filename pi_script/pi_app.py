@@ -59,3 +59,7 @@ def main():
 
 def run_motor():
     motor_1.forward()
+
+
+main()
+
