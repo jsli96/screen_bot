@@ -51,9 +51,11 @@ def start_send_img(data):
 
 
 def main():
-    sio.connect('http://127.0.0.1:5000/')
-    sio.emit('This is test in main function', "It\'s me")
-    sio.wait()
+    # sio.connect('http://127.0.0.1:5000/')
+    # sio.emit('This is test in main function', "It\'s me")
+    # sio.wait()
+    motor_1 = Motor(MOTOR_A_IN_1, MOTOR_A_IN_2)
 
 
 def run_motor():
+    motor_1.forward()
