@@ -5,10 +5,13 @@ import base64
 from gpiozero import *
 from time import sleep
 # from picamera import Picamera
-MOTOR_A_IN_1 = 26
-MOTOR_A_IN_2 = 21
-MOTOR_B_IN_1 = 23
-MOTOR_B_IN_2 = 22
+MOTOR_A_IN_1 = 12   # PWM input for extension motor
+MOTOR_A_IN_2 = 5    # Phase input for extension motor
+MOTOR_B_IN_1 = 13   # PWM input for rotation motor
+MOTOR_B_IN_2 = 6    # Phase input for rotation motor
+ROTATION_C1 = 21    # Motor encoder C1
+ROTATION_C2 = 20    # Motor encoder C2
+ROTATION_VCC = 16   # Encoder power line
 # camera = Picamera()
 URL_LOCAL = 'http://127.0.0.1:5000/'
 URL_CLOUD = 'https://screen-bot-proj.herokuapp.com/'
