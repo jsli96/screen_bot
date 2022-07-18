@@ -16,6 +16,8 @@ URL_LOCAL = 'http://127.0.0.1:5000/'
 URL_CLOUD = 'https://screen-bot-proj.herokuapp.com/'
 E_MOTOR = PhaseEnableMotor(MOTOR_A_PHASE, MOTOR_A_PWM, pwm=True)    # Set up extension motor
 R_MOTOR = PhaseEnableMotor(MOTOR_B_PHASE, MOTOR_B_PWM, pwm=True)    # Set up rotation motor
+ENCODER_C1 = DigitalInputDevice(ROTATION_C1)
+
 VCC = DigitalOutputDevice(ROTATION_VCC, initial_value=True)
 sio = socketio.Client()
 
@@ -26,6 +28,10 @@ def send_img():
     size, data = cv.imencode('.png', img)
     data = base64.b64encode(data)
     sio.emit('img_data', data)
+
+
+def interrupt_handler():
+    print('interrupt handler works')
 
 
 @sio.event
@@ -59,9 +65,12 @@ def start_send_img(data):
 # sio.connect('http://127.0.0.1:5000/')
 # sio.emit('This is test in main function', "It\'s me")
 # sio.wait()
-R_MOTOR.backward(speed=0)
-E_MOTOR.forward(speed=1)
-time.sleep(3)
-R_MOTOR.forward(speed=1)
-E_MOTOR.backward(speed=0)
-time.sleep(3)
+ENCODER_C1.when_activated = interrupt_handler
+
+while True:
+#    R_MOTOR.backward(speed=0)
+    E_MOTOR.forward(speed=1)
+    time.sleep(1)
+#    R_MOTOR.forward(speed=1)
+    E_MOTOR.backward(speed=0)
+
