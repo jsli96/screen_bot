@@ -1,14 +1,15 @@
+import time
 import socketio
-import cv2 as cv
+# import cv2 as cv
 import base64
 from gpiozero import *
 from time import sleep
-from picamera import Picamera
-MOTOR_A_IN_1 = GPIO26
-MOTOR_A_IN_2 = GPIO21
-MOTOR_B_IN_1 = GPIO23
-MOTOR_B_IN_2 = GPIO22
-camera = Picamera()
+# from picamera import Picamera
+MOTOR_A_IN_1 = 26
+MOTOR_A_IN_2 = 21
+MOTOR_B_IN_1 = 23
+MOTOR_B_IN_2 = 22
+# camera = Picamera()
 URL_LOCAL = 'http://127.0.0.1:5000/'
 URL_CLOUD = 'https://screen-bot-proj.herokuapp.com/'
 sio = socketio.Client()
@@ -54,12 +55,9 @@ def main():
     # sio.connect('http://127.0.0.1:5000/')
     # sio.emit('This is test in main function', "It\'s me")
     # sio.wait()
-    motor_1 = Motor(MOTOR_A_IN_1, MOTOR_A_IN_2)
+    motor_1 = PhaseEnableMotor(MOTOR_A_IN_1, MOTOR_A_IN_2)
 
 
-def run_motor():
-    motor_1.forward()
 
-
-main()
-
+motor_1 = PhaseEnableMotor(26, 21)
+motor_1.backward()
