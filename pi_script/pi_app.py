@@ -3,18 +3,20 @@ import socketio
 # import cv2 as cv
 import base64
 from gpiozero import *
-from time import sleep
 # from picamera import Picamera
-MOTOR_A_IN_1 = 12   # PWM input for extension motor
-MOTOR_A_IN_2 = 5    # Phase input for extension motor
-MOTOR_B_IN_1 = 13   # PWM input for rotation motor
-MOTOR_B_IN_2 = 6    # Phase input for rotation motor
-ROTATION_C1 = 21    # Motor encoder C1
-ROTATION_C2 = 20    # Motor encoder C2
-ROTATION_VCC = 16   # Encoder power line
+MOTOR_A_PWM = 'GPIO12'     # PWM input for extension motor
+MOTOR_A_PHASE = 'GPIO5'    # Phase input for extension motor
+MOTOR_B_PWM = 'GPIO13'     # PWM input for rotation motor
+MOTOR_B_PHASE = 'GPIO6'    # Phase input for rotation motor
+ROTATION_C1 = 'GPIO21'     # Motor encoder C1
+ROTATION_C2 = 'GPIO20'     # Motor encoder C2
+ROTATION_VCC = 'GPIO16'    # Encoder power line
 # camera = Picamera()
 URL_LOCAL = 'http://127.0.0.1:5000/'
 URL_CLOUD = 'https://screen-bot-proj.herokuapp.com/'
+E_MOTOR = PhaseEnableMotor(MOTOR_A_PHASE, MOTOR_A_PWM, pwm=True)    # Set up extension motor
+R_MOTOR = PhaseEnableMotor(MOTOR_B_PHASE, MOTOR_B_PWM, pwm=True)    # Set up rotation motor
+VCC = DigitalOutputDevice(ROTATION_VCC, initial_value=True)
 sio = socketio.Client()
 
 
@@ -54,13 +56,12 @@ def start_send_img(data):
     return 'OK'
 
 
-def main():
-    # sio.connect('http://127.0.0.1:5000/')
-    # sio.emit('This is test in main function', "It\'s me")
-    # sio.wait()
-    motor_1 = PhaseEnableMotor(MOTOR_A_IN_1, MOTOR_A_IN_2)
-
-
-
-motor_1 = PhaseEnableMotor(26, 21)
-motor_1.backward()
+# sio.connect('http://127.0.0.1:5000/')
+# sio.emit('This is test in main function', "It\'s me")
+# sio.wait()
+R_MOTOR.backward(speed=0)
+E_MOTOR.forward(speed=1)
+time.sleep(3)
+R_MOTOR.forward(speed=1)
+E_MOTOR.backward(speed=0)
+time.sleep(3)
