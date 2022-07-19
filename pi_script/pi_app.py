@@ -110,8 +110,7 @@ def start_send_img(data):
 # sio.emit('This is test in main function', "It\'s me")
 # sio.wait()
 ENCODER_C1.when_activated = read_encoder
+motor_pid(300)
 
-while 1:
-    None
-# motor_pid(300)
+
 
