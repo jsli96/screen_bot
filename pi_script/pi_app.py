@@ -16,8 +16,8 @@ URL_LOCAL = 'http://127.0.0.1:5000/'
 URL_CLOUD = 'https://screen-bot-proj.herokuapp.com/'
 E_MOTOR = PhaseEnableMotor(MOTOR_A_PHASE, MOTOR_A_PWM, pwm=True)    # Set up extension motor
 R_MOTOR = PhaseEnableMotor(MOTOR_B_PHASE, MOTOR_B_PWM, pwm=True)    # Set up rotation motor
-ENCODER_C1 = DigitalInputDevice(ROTATION_C1)
-
+ENCODER_C1 = DigitalInputDevice(ROTATION_C1)    # Set up encoder C1
+ENCODER_C2 = DigitalInputDevice(ROTATION_C2)    # Set up encoder C2
 VCC = DigitalOutputDevice(ROTATION_VCC, initial_value=True)
 sio = socketio.Client()
 
