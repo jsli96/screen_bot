@@ -31,20 +31,50 @@ def send_img():
     sio.emit('img_data', data)
 
 
-def motor_pid(target):
-    target = target + 1
+def motor_pid(input_target):
+    global POSITION
+    kp = 1
+    kd = 0.025
+    ki = 0.01
+    p_time = 0.00
+    p_error = 0.00
+    i_error = 0.00
 
+    while True:
+        c_time = time.time()
+        # print('current time: ', c_time)
+        delta_t = (c_time - p_time)
+        p_time = c_time
+        error = input_target - POSITION
+        # print("error: ", error)
+        de_dt = (error - p_error) / delta_t     # de/dt
+        i_error = i_error + error * de_dt
+        u = kp * error + kd * de_dt + ki * i_error
+        # print('u: ', u)
+        if u > 0:
+            if u > 255:
+                u = 255.00
+            power = u / 255
+            R_MOTOR.forward(speed=power)
+        else:
+            if u < -255:
+                u = -255
+            power = u / 255 + 1
+            R_MOTOR.backward(speed=power)
+        if abs(error) < 10:
+            break
+        p_error = error
 
 
 def read_encoder():
     global POSITION
     b = ENCODER_C2.value
+    print('b: ', b)
     if b > 0:
         POSITION = POSITION + 1
     else:
         POSITION = POSITION - 1
-
-    print(POSITION)
+    print('Position: ', POSITION)
 
 
 
@@ -81,10 +111,7 @@ def start_send_img(data):
 # sio.wait()
 ENCODER_C1.when_activated = read_encoder
 
-while True:
-#    R_MOTOR.backward(speed=0)
-    E_MOTOR.forward(speed=1)
-    time.sleep(1)
-#    R_MOTOR.forward(speed=1)
-    E_MOTOR.backward(speed=0)
+while 1:
+    None
+# motor_pid(300)
 
