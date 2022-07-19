@@ -20,6 +20,7 @@ ENCODER_C1 = DigitalInputDevice(ROTATION_C1)    # Set up encoder C1
 ENCODER_C2 = DigitalInputDevice(ROTATION_C2)    # Set up encoder C2
 VCC = DigitalOutputDevice(ROTATION_VCC, initial_value=True)
 sio = socketio.Client()
+POSITION = 0
 
 
 def send_img():
@@ -30,8 +31,21 @@ def send_img():
     sio.emit('img_data', data)
 
 
-def interrupt_handler():
-    print('interrupt handler works')
+def motor_pid(target):
+    target = target + 1
+
+
+
+def read_encoder():
+    global POSITION
+    b = ENCODER_C2.value
+    if b > 0:
+        POSITION = POSITION + 1
+    else:
+        POSITION = POSITION - 1
+
+    print(POSITION)
+
 
 
 @sio.event
@@ -65,7 +79,7 @@ def start_send_img(data):
 # sio.connect('http://127.0.0.1:5000/')
 # sio.emit('This is test in main function', "It\'s me")
 # sio.wait()
-ENCODER_C1.when_activated = interrupt_handler
+ENCODER_C1.when_activated = read_encoder
 
 while True:
 #    R_MOTOR.backward(speed=0)
