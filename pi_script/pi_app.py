@@ -32,6 +32,7 @@ def send_img():
 
 
 def motor_pid(input_target):
+    ENCODER_C1.when_activated = read_encoder
     global POSITION
     kp = 1
     kd = 0.025
