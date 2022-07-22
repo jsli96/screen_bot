@@ -1,9 +1,9 @@
 import time
 import socketio
-# import cv2 as cv
+import cv2 as cv
 import base64
 from gpiozero import *
-# from picamera import Picamera
+from picamera import Picamera
 MOTOR_A_PWM = 'GPIO12'     # PWM input for extension motor
 MOTOR_A_PHASE = 'GPIO5'    # Phase input for extension motor
 MOTOR_B_PWM = 'GPIO13'     # PWM input for rotation motor
