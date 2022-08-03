@@ -13,7 +13,7 @@ ROTATION_C2 = 'GPIO20'     # Motor encoder C2
 ROTATION_VCC = 'GPIO16'    # Encoder power line
 IR_1 = 'GPIO23'            # IR Sensor 1
 IR_2 = 'GPIO24'            # IR Sensor 2
-IR_VCC = 'GPIO26'
+IR_VCC = 'GPIO26'          # IR Sensor Power line
 
 # camera = Picamera()
 URL_LOCAL = 'http://127.0.0.1:5000/'
