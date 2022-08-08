@@ -72,16 +72,16 @@ def img_match(img_name, img_temp):
 
 def run_app():
     start_1 = timeit.default_timer()
-    img1 = cv.imread("photo/test05_1.jpg", cv.IMREAD_GRAYSCALE)  # Read first image
+    img1 = cv.imread("photo/test05_1.jpeg", cv.IMREAD_GRAYSCALE)  # Read first image
     img1 = cv.resize(img1, (0, 0), fx=0.5, fy=0.5)
-    img2 = cv.imread("photo/test05_2.jpg", cv.IMREAD_GRAYSCALE)  # Read second image
+    img2 = cv.imread("photo/test05_2.jpeg", cv.IMREAD_GRAYSCALE)  # Read second image
     img2 = cv.resize(img2, (0, 0), fx=0.5, fy=0.5)
-    img3 = cv.imread("photo/test05_3.jpg", cv.IMREAD_GRAYSCALE)  # Read third image
+    img3 = cv.imread("photo/test05_3.jpeg", cv.IMREAD_GRAYSCALE)  # Read third image
     img3 = cv.resize(img3, (0, 0), fx=0.5, fy=0.5)
     stop_1 = timeit.default_timer()
     start_2 = stop_1
-    img_template = cv.imread("photo/test_template.jpg", cv.IMREAD_GRAYSCALE)  # Read template image
-    img_template_color = cv.imread("photo/test_template_dot.jpg", cv.IMREAD_COLOR)
+    img_template = cv.imread("photo/test_template.jpeg", cv.IMREAD_GRAYSCALE)  # Read template image
+    img_template_color = cv.imread("photo/test_template_dot.jpeg", cv.IMREAD_COLOR)
     img_match(img1, img_template)
     img_match(img2, img_template)
     img_match(img3, img_template)
