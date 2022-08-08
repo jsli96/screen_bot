@@ -3,7 +3,7 @@ import socketio
 import cv2 as cv
 import base64
 from gpiozero import *
-from picamera import Picamera
+# from picamera import Picamera
 MOTOR_A_PWM = 'GPIO12'     # PWM input for extension motor
 MOTOR_A_PHASE = 'GPIO5'    # Phase input for extension motor
 MOTOR_B_PWM = 'GPIO13'     # PWM input for rotation motor
@@ -22,7 +22,10 @@ E_MOTOR = PhaseEnableMotor(MOTOR_A_PHASE, MOTOR_A_PWM, pwm=True)    # Set up ext
 R_MOTOR = PhaseEnableMotor(MOTOR_B_PHASE, MOTOR_B_PWM, pwm=True)    # Set up rotation motor
 ENCODER_C1 = DigitalInputDevice(ROTATION_C1)    # Set up encoder C1
 ENCODER_C2 = DigitalInputDevice(ROTATION_C2)    # Set up encoder C2
-VCC = DigitalOutputDevice(ROTATION_VCC, initial_value=True)
+IR_SENSOR_1 = DigitalInputDevice(IR_1)                 # Set up IR sensor 1
+IR_SENSOR_2 = DigitalInputDevice(IR_2)                 # Set up IR sensor 2
+ENCODER_VCC = DigitalOutputDevice(ROTATION_VCC, initial_value=True)
+IR_LED_VCC = DigitalOutputDevice(IR_VCC, initial_value=True)
 sio = socketio.Client()
 POSITION = 0
 
@@ -82,7 +85,6 @@ def read_encoder():
     print('Position: ', POSITION)
 
 
-
 @sio.event
 def connect():
     print('my sid is: ' + sio.sid)
@@ -114,8 +116,21 @@ def start_send_img(data):
 # sio.connect('http://127.0.0.1:5000/')
 # sio.emit('This is test in main function', "It\'s me")
 # sio.wait()
-ENCODER_C1.when_activated = read_encoder
-motor_pid(300)
+# ENCODER_C1.when_activated = read_encoder
+# motor_pid(300)
+
+pos = 0
+print("System ready!\n")
+
+while True:
+    # if IR_SENSOR_1.value == 0:
+    #     pos = pos + 1
+    #     print(pos)
+    print("IR1: ", IR_SENSOR_1.value)
+    # print("IR2: ", IR_SENSOR_2.value)
+    time.sleep(1)
+
+
 
 
 
