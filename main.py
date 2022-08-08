@@ -54,7 +54,6 @@ def receive_img(data):
 
 
 if __name__ == '__main__':
-    # app.run()
     logging.basicConfig(level=logging.DEBUG)
     server = pywsgi.WSGIServer(('127.0.0.1', 5000), app, handler_class=WebSocketHandler)
     server.serve_forever()
