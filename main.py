@@ -31,13 +31,13 @@ def pi_connect():
 
 
 @app.route('/pi_status_connected/')
-def pi_status():
+def pi_status_t():
     global PI_STATUS
     PI_STATUS = True
 
 
 @app.route('/pi_status_disconnected/')
-def pi_status():
+def pi_status_f():
     global PI_STATUS
     PI_STATUS = False
 
