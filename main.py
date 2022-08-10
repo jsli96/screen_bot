@@ -30,13 +30,16 @@ def pi_connect():
     return "pi connected!"
 
 
-@app.route('/pi_status/')
+@app.route('/pi_status_connected/')
 def pi_status():
     global PI_STATUS
-    if PI_STATUS is True:
-        return "pi connected!"
-    else:
-        return "pi disconnected!"
+    PI_STATUS = True
+
+
+@app.route('/pi_status_disconnected/')
+def pi_status():
+    global PI_STATUS
+    PI_STATUS = False
 
 
 @socketio.on('This is test in main function')
