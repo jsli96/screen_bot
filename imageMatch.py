@@ -61,7 +61,7 @@ def img_match(img_name, img_temp):
         dst = cv.perspectiveTransform(pts, m)
         dst_ctr = cv.perspectiveTransform(pts_ctr, m)
         p1_c = [dst_ctr[0][0][0], dst_ctr[0][0][1]]
-        print(p1_c)
+        print("Image center point: ", p1_c)
         return p1_c
         # cv.polylines(img_template_color, [np.int32(dst)], True, (0, 128, 0), 5, cv.LINE_AA)
         # cv.circle(img_template_color, [np.int32(dst_ctr)[0][0][0], np.int32(dst_ctr)[0][0][1]], 5, (255, 0, 0), 5)
@@ -89,14 +89,11 @@ def run_app(array_1, array_2, array_3):
     p3 = img_match(img3, img_template)
     img3 = 0
     stop_1 = timeit.default_timer()
-    start_2 = stop_1
-    stop_2 = timeit.default_timer()
-    print('Loading Time: ', stop_1 - start_1)
-    print('Processing Time: ', stop_2 - start_2)
+    print('Processing Time: ', stop_1 - start_1)
     center, r = get_circle(p1, p2, p3)
     # -----show result----------------------------------------------------------
-    print(center)
-    print(r)
+    print("Camera position: ", center)
+    print("Radius: ", r)
     # cv.circle(img_template_color, (int(p1[0]), int(p1[1])), 5, (255, 0, 0), 5)
     # cv.circle(img_template_color, (int(p2[0]), int(p2[1])), 5, (255, 0, 0), 5)
     # cv.circle(img_template_color, (int(p3[0]), int(p3[1])), 5, (255, 0, 0), 5)

@@ -58,7 +58,7 @@ def receive_img(data):
     # ---------old method works on local but not on heroku-------
     # with open('image_1.png', 'wb') as f:
     #     f.write(base64.decodebytes(data))
-    print('Finished')
+    print('Image 1 received')
     # socketio.emit('receive finished')
     # -----------------------------------------------------------
 
@@ -68,7 +68,7 @@ def receive_img(data):
     global IMG_2
     data_2_decoded = base64.b64decode(data)
     IMG_2 = np.frombuffer(data_2_decoded, dtype=np.uint8)
-    print('Finished')
+    print('Image 2 received')
 
 
 @socketio.on('img_data_3')
@@ -76,7 +76,7 @@ def receive_img(data):
     global IMG_3
     data_3_decoded = base64.b64decode(data)
     IMG_3 = np.frombuffer(data_3_decoded, dtype=np.uint8)
-    print('Finished')
+    print('Image 3 received')
     run_app(IMG_1, IMG_2, IMG_3)
 
 
