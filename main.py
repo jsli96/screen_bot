@@ -48,9 +48,25 @@ def show_message(data):
     print('received message: ' + data)
 
 
-@socketio.on('img_data')
+@socketio.on('img_data_1')
 def receive_img(data):
-    with open('images/image_on_server.png', 'wb') as f:
+    with open('image_1.png', 'wb') as f:
+        f.write(base64.decodebytes(data))
+    print('Finished')
+    socketio.emit('receive finished')
+
+
+@socketio.on('img_data_2')
+def receive_img(data):
+    with open('image_2.png', 'wb') as f:
+        f.write(base64.decodebytes(data))
+    print('Finished')
+    socketio.emit('receive finished')
+
+
+@socketio.on('img_data_3')
+def receive_img(data):
+    with open('image_3.png', 'wb') as f:
         f.write(base64.decodebytes(data))
     print('Finished')
     socketio.emit('receive finished')
