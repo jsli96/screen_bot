@@ -9,7 +9,9 @@ import base64
 app = Flask(__name__)
 socketio = SocketIO(app)
 PI_STATUS = False
-
+IMG_1 = 0
+IMG_2 = 0
+IMG_3 = 0
 
 @app.route('/')
 def index():
@@ -50,26 +52,28 @@ def show_message(data):
 
 @socketio.on('img_data_1')
 def receive_img(data):
-    with open('image_1.png', 'wb') as f:
-        f.write(base64.decodebytes(data))
-    print('Finished')
-    socketio.emit('receive finished')
+    global IMG_1
+    IMG_1 = np.fromstring(data, dtype=np.uint8)
+    # ---------old method works on local but not on heroku-------
+    # with open('image_1.png', 'wb') as f:
+    #     f.write(base64.decodebytes(data))
+    # print('Finished')
+    # socketio.emit('receive finished')
+    # -----------------------------------------------------------
 
 
 @socketio.on('img_data_2')
 def receive_img(data):
-    with open('image_2.png', 'wb') as f:
-        f.write(base64.decodebytes(data))
-    print('Finished')
-    socketio.emit('receive finished')
+    global IMG_2
+    IMG_2 = np.fromstring(data, dtype=np.uint8)
 
 
 @socketio.on('img_data_3')
 def receive_img(data):
-    with open('image_3.png', 'wb') as f:
-        f.write(base64.decodebytes(data))
-    print('Finished')
-    socketio.emit('receive finished')
+    global IMG_3
+    IMG_3 = np.fromstring(data, dtype=np.uint8)
+    run_app(IMG_1, IMG_2, IMG_3)
+
 
 
 if __name__ == '__main__':

@@ -70,14 +70,14 @@ def img_match(img_name, img_temp):
                        matchesMask=matches_mask, flags=2)
 
 
-def run_app():
+def run_app(img_1, img_2, img_3):
     start_1 = timeit.default_timer()
-    img1 = cv.imread("img_1.png", cv.IMREAD_GRAYSCALE)  # Read first image
-    img1 = cv.resize(img1, (0, 0), fx=0.5, fy=0.5)
-    img2 = cv.imread("img_2.png", cv.IMREAD_GRAYSCALE)  # Read second image
-    img2 = cv.resize(img2, (0, 0), fx=0.5, fy=0.5)
-    img3 = cv.imread("img_2.png", cv.IMREAD_GRAYSCALE)  # Read third image
-    img3 = cv.resize(img3, (0, 0), fx=0.5, fy=0.5)
+    img1 = cv.imdecode(img_1, cv.IMREAD_GRAYSCALE)  # Read first image
+    # img1 = cv.resize(img1, (0, 0), fx=0.5, fy=0.5)
+    img2 = cv.imdecode(img_2, cv.IMREAD_GRAYSCALE)  # Read second image
+    # img2 = cv.resize(img2, (0, 0), fx=0.5, fy=0.5)
+    img3 = cv.imdecode(img_3, cv.IMREAD_GRAYSCALE)  # Read third image
+    # img3 = cv.resize(img3, (0, 0), fx=0.5, fy=0.5)
     stop_1 = timeit.default_timer()
     start_2 = stop_1
     img_template = cv.imread("photo/test_template.jpeg", cv.IMREAD_GRAYSCALE)  # Read template image
