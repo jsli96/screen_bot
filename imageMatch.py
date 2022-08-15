@@ -1,6 +1,7 @@
 import numpy as np
 import cv2 as cv
 import timeit
+
 MIN_MATCH_COUNT = 10
 FLANN_INDEX_KD_TREE = 0
 
@@ -61,6 +62,7 @@ def img_match(img_name, img_temp):
         dst_ctr = cv.perspectiveTransform(pts_ctr, m)
         p1_c = [dst_ctr[0][0][0], dst_ctr[0][0][1]]
         print(p1_c)
+        return p1_c
         # cv.polylines(img_template_color, [np.int32(dst)], True, (0, 128, 0), 5, cv.LINE_AA)
         # cv.circle(img_template_color, [np.int32(dst_ctr)[0][0][0], np.int32(dst_ctr)[0][0][1]], 5, (255, 0, 0), 5)
     else:
@@ -70,30 +72,65 @@ def img_match(img_name, img_temp):
                        matchesMask=matches_mask, flags=2)
 
 
-def run_app(img_1, img_2, img_3):
+def run_app(array_1, array_2, array_3):
     start_1 = timeit.default_timer()
-    img1 = cv.imdecode(img_1, cv.IMREAD_GRAYSCALE)  # Read first image
-    # img1 = cv.resize(img1, (0, 0), fx=0.5, fy=0.5)
-    img2 = cv.imdecode(img_2, cv.IMREAD_GRAYSCALE)  # Read second image
-    # img2 = cv.resize(img2, (0, 0), fx=0.5, fy=0.5)
-    img3 = cv.imdecode(img_3, cv.IMREAD_GRAYSCALE)  # Read third image
-    # img3 = cv.resize(img3, (0, 0), fx=0.5, fy=0.5)
+    img1 = cv.imdecode(array_1, cv.IMREAD_GRAYSCALE)  # Read first image
+    img1 = cv.resize(img1, (0, 0), fx=0.5, fy=0.5)
+    img2 = cv.imdecode(array_2, cv.IMREAD_GRAYSCALE)  # Read second image
+    img2 = cv.resize(img2, (0, 0), fx=0.5, fy=0.5)
+    img3 = cv.imdecode(array_3, cv.IMREAD_GRAYSCALE)  # Read third image
+    img3 = cv.resize(img3, (0, 0), fx=0.5, fy=0.5)
     stop_1 = timeit.default_timer()
     start_2 = stop_1
     img_template = cv.imread("photo/test_template.jpeg", cv.IMREAD_GRAYSCALE)  # Read template image
     img_template_color = cv.imread("photo/test_template_dot.jpeg", cv.IMREAD_COLOR)
-    img_match(img1, img_template)
-    img_match(img2, img_template)
-    img_match(img3, img_template)
+    p1 = img_match(img1, img_template)
+    p2 = img_match(img2, img_template)
+    p3 = img_match(img3, img_template)
     stop_2 = timeit.default_timer()
     print('Loading Time: ', stop_1 - start_1)
     print('Processing Time: ', stop_2 - start_2)
+    center, r = get_circle(p1, p2, p3)
+    # -----show result----------------------------------------------------------
+    print(center)
+    print(r)
+    cv.circle(img_template_color, (int(p1[0]), int(p1[1])), 5, (255, 0, 0), 5)
+    cv.circle(img_template_color, (int(p2[0]), int(p2[1])), 5, (255, 0, 0), 5)
+    cv.circle(img_template_color, (int(p3[0]), int(p3[1])), 5, (255, 0, 0), 5)
+    cv.circle(img_template_color, (int(center[0]), int(center[1])), 5, (255, 0, 0), 5)
+    cv.circle(img_template_color, (562, 350), int(r), (255, 0, 0), 5)
+    show("show", img_template_color)
+
+
 
 # Use this code to run img match script alone.
 # run_app()
 
-# img1 = cv.imread("server_img.jpg", cv.IMREAD_GRAYSCALE)
-# show('sds', img1)
+# Here below is open file from buffer
+# f_1 = open("photo/test05_1.jpeg", "rb")
+# img_1 = f_1.read()  # Read first image
+# f_1.close()
+# data_1 = base64.b64encode(img_1)
+# data_1_decoded = base64.b64decode(data_1)
+# data_1_array = np.frombuffer(data_1_decoded, dtype=np.uint8)
+#
+#
+# f_2 = open("photo/test05_2.jpeg", "rb")
+# img_2 = f_2.read()  # Read first image
+# f_2.close()
+# data_2 = base64.b64encode(img_2)
+# data_2_decoded = base64.b64decode(data_2)
+# data_2_array = np.frombuffer(data_2_decoded, dtype=np.uint8)
+#
+#
+# f_3 = open("photo/test05_3.jpeg", "rb")
+# img_3 = f_3.read()  # Read first image
+# f_3.close()
+# data_3 = base64.b64encode(img_3)
+# data_3_decoded = base64.b64decode(data_3)
+# data_3_array = np.fromstring(data_3_decoded, dtype=np.uint8)
+#
+# run_app(data_1_array, data_2_array, data_3_array)
 
 
 
