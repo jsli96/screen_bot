@@ -72,11 +72,11 @@ def img_match(img_name, img_temp):
 
 def run_app():
     start_1 = timeit.default_timer()
-    img1 = cv.imread("photo/test05_1.jpeg", cv.IMREAD_GRAYSCALE)  # Read first image
+    img1 = cv.imread("img_1.png", cv.IMREAD_GRAYSCALE)  # Read first image
     img1 = cv.resize(img1, (0, 0), fx=0.5, fy=0.5)
-    img2 = cv.imread("photo/test05_2.jpeg", cv.IMREAD_GRAYSCALE)  # Read second image
+    img2 = cv.imread("img_2.png", cv.IMREAD_GRAYSCALE)  # Read second image
     img2 = cv.resize(img2, (0, 0), fx=0.5, fy=0.5)
-    img3 = cv.imread("photo/test05_3.jpeg", cv.IMREAD_GRAYSCALE)  # Read third image
+    img3 = cv.imread("img_2.png", cv.IMREAD_GRAYSCALE)  # Read third image
     img3 = cv.resize(img3, (0, 0), fx=0.5, fy=0.5)
     stop_1 = timeit.default_timer()
     start_2 = stop_1
@@ -88,7 +88,6 @@ def run_app():
     stop_2 = timeit.default_timer()
     print('Loading Time: ', stop_1 - start_1)
     print('Processing Time: ', stop_2 - start_2)
-    # show("111", img_template_color)
 
 # Use this code to run img match script alone.
 # run_app()
