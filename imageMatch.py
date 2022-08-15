@@ -94,12 +94,12 @@ def run_app(array_1, array_2, array_3):
     # -----show result----------------------------------------------------------
     print(center)
     print(r)
-    cv.circle(img_template_color, (int(p1[0]), int(p1[1])), 5, (255, 0, 0), 5)
-    cv.circle(img_template_color, (int(p2[0]), int(p2[1])), 5, (255, 0, 0), 5)
-    cv.circle(img_template_color, (int(p3[0]), int(p3[1])), 5, (255, 0, 0), 5)
-    cv.circle(img_template_color, (int(center[0]), int(center[1])), 5, (255, 0, 0), 5)
-    cv.circle(img_template_color, (562, 350), int(r), (255, 0, 0), 5)
-    show("show", img_template_color)
+    # cv.circle(img_template_color, (int(p1[0]), int(p1[1])), 5, (255, 0, 0), 5)
+    # cv.circle(img_template_color, (int(p2[0]), int(p2[1])), 5, (255, 0, 0), 5)
+    # cv.circle(img_template_color, (int(p3[0]), int(p3[1])), 5, (255, 0, 0), 5)
+    # cv.circle(img_template_color, (int(center[0]), int(center[1])), 5, (255, 0, 0), 5)
+    # cv.circle(img_template_color, (562, 350), int(r), (255, 0, 0), 5)
+    # show("show", img_template_color)
 
 
 
