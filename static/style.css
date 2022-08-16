@@ -1,0 +1,44 @@
+html{
+    font-size: 100%;
+}
+div.header_container{
+    text-align: center;
+    color: white;
+    background-color: black;
+}
+
+div.item_container{
+    border-style: solid;
+    border-color: black;
+    border-width: 1rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+div.item_container .item_title{
+    background-color: antiquewhite;
+    overflow:auto;
+}
+
+div.item_container .item_1{
+    background-color: white;
+    overflow:auto;
+    padding-bottom:0.75rem
+}
+
+div.item_container .item_2{
+    background-color: antiquewhite;
+    overflow:auto;
+    padding-bottom:0.65rem
+}
+
+div.item_container .item_3{
+    background-color: white;
+    overflow:auto;
+    padding-bottom:0.65rem
+}
+
+div.item_container .item_4{
+    background-color: antiquewhite;
+    overflow:auto;
+    padding-bottom:0.65rem
+}

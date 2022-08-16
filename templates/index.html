@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <script
-  src="https://code.jquery.com/jquery-3.6.0.js"
-  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-  crossorigin="anonymous"></script>
+        src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/static/style.css">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,48 +11,142 @@
     <link rel="icon" type="image/x-icon" href="/static/robot_favicon.ico">
 </head>
 <body>
-<div>
+<div >
+    <button
+            type="button"
+            name="connect_check_pi_status"
+            value="Connect to the RaspberryPi and check its status"
+            id="connect_check_pi_status">
+        Connect to Pi
+    </button>
     <p id="img_status"></p>
-<p id="function_status"></p>
-<p id="pi_status">Pi Status: </p>
+    <p id="function_status"></p>
+    <p id="pi_status">Pi Status: </p>
+
+    <!--    <button-->
+    <!--            type="button"-->
+    <!--            name="img_match_button"-->
+    <!--            value="Run image match python function"-->
+    <!--            id="img_match_button">-->
+    <!--        Image Match-->
+    <!--    </button>-->
+
+</div>
+<div class="header_container">
+    <h1>SMart Burger</h1>
+    <p>Welcome to Smart Burger restaurant</p>
+</div>
+
+<div class="item_container">
+    <div class="item_title">
+        <h2>Burger</h2>
+        <p>Try our famous innovative burger</p>
+    </div>
+    <div class="item_1">
+        <h4>SMart burger</h4>
+        <p>Fresh, hand-formed patty hot off the grill with strips of crispy apple-wood
+            smoked bacon on top. Add as many toppings as you want</p>
+        <button type="button" name="SMart burger"> Add</button>
+    </div>
+    <div class="item_2">
+        <h4>Bacon burger</h4>
+        <p>Fresh, hand-formed patty hot off the grill with strips of crispy apple-wood
+            smoked bacon on top. Add as many toppings as you want</p>
+        <button type="button" name="SMart burger"> Add</button>
+    </div>
+    <div class="item_3">
+        <h4>Cheese burger</h4>
+        <p>Fresh, hand-formed patty hot off the grill with strips of crispy apple-wood
+            smoked bacon on top. Add as many toppings as you want</p>
+        <button type="button" name="SMart burger"> Add</button>
+    </div>
+    <div class="item_4">
+        <h4>All vegetable burger</h4>
+        <p>Fresh, hand-formed patty hot off the grill with strips of crispy apple-wood
+            smoked bacon on top. Add as many toppings as you want</p>
+        <button type="button" name="SMart burger"> Add</button>
+    </div>
+</div>
+
+<div class="item_container">
+    <div class="item_title">
+        <h2>Sandwich</h2>
+        <p>Try our famous innovative sandwich</p>
+    </div>
+    <div class="item_1">
+        <h4>SMart sandwich</h4>
+        <p>Fresh, hand-formed patty hot off the grill with strips of crispy apple-wood
+            smoked bacon on top. Add as many toppings as you want</p>
+        <button type="button" name="SMart burger"> Add</button>
+    </div>
+    <div class="item_2">
+        <h4>Bacon sandwich</h4>
+        <p>Fresh, hand-formed patty hot off the grill with strips of crispy apple-wood
+            smoked bacon on top. Add as many toppings as you want</p>
+        <button type="button" name="SMart burger"> Add</button>
+    </div>
+    <div class="item_3">
+        <h4>Cheese sandwich</h4>
+        <p>Fresh, hand-formed patty hot off the grill with strips of crispy apple-wood
+            smoked bacon on top. Add as many toppings as you want</p>
+        <button type="button" name="SMart burger"> Add</button>
+    </div>
+    <div class="item_4">
+        <h4>All vegetable sandwich</h4>
+        <p>Fresh, hand-formed patty hot off the grill with strips of crispy apple-wood
+            smoked bacon on top. Add as many toppings as you want</p>
+        <button type="button" name="SMart burger"> Add</button>
+    </div>
 </div>
 
 
-<div>
-<button
-    type="button"
-    name="img_match_button"
-    value="Run image match python function"
-    id="img_match_button">
-    Image Match
-</button>
+<div class="item_container">
+    <div class="item_title">
+        <h2>Dessert</h2>
+    </div>
+    <div class="item_1">
+        <h4>D1</h4>
+        <p>Fresh, hand-formed patty hot off the grill with strips of crispy apple-wood
+            smoked bacon on top. Add as many toppings as you want</p>
+        <button type="button" name="SMart burger"> Add</button>
+    </div>
+    <div class="item_2">
+        <h4>D2</h4>
+        <p>Fresh, hand-formed patty hot off the grill with strips of crispy apple-wood
+            smoked bacon on top. Add as many toppings as you want</p>
+        <button type="button" name="SMart burger"> Add</button>
+    </div>
+    <div class="item_3">
+        <h4>D3</h4>
+        <p>Fresh, hand-formed patty hot off the grill with strips of crispy apple-wood
+            smoked bacon on top. Add as many toppings as you want</p>
+        <button type="button" name="SMart burger"> Add</button>
+    </div>
+    <div class="item_4">
+        <h4>D4</h4>
+        <p>Fresh, hand-formed patty hot off the grill with strips of crispy apple-wood
+            smoked bacon on top. Add as many toppings as you want</p>
+        <button type="button" name="SMart burger"> Add</button>
+    </div>
 </div>
-<button
-    type="button"
-    name="connect_check_pi_status"
-    value="Connect to the RaspberryPi and check its status"
-    id="connect_check_pi_status">
-    Connect to Pi
-</button>
-
 
 
 </body>
 
 
 <script>
-    $('button#img_match_button').click(function(click){
+    $('button#img_match_button').click(function (click) {
         click.preventDefault();
-        $.get('/run_imgMatch', function(data){
-            document.getElementById("function_status").innerHTML = data;
-            $('p#img_status').load("static/text")
+        $.get('/run_imgMatch', function (data) {
+                document.getElementById("function_status").innerHTML = data;
+                $('p#img_status').load("static/text")
             }, "text"
         );
     });
-        $('button#connect_check_pi_status').click(function(click){
+    $('button#connect_check_pi_status').click(function (click) {
         click.preventDefault();
-        $.get('/pi_status/', function(data){
-            document.getElementById("pi_status").innerHTML = data;
+        $.get('/pi_status/', function (data) {
+                document.getElementById("pi_status").innerHTML = data;
             }, "text"
         );
     });
