@@ -13,6 +13,7 @@ IMG_1 = 0
 IMG_2 = 0
 IMG_3 = 0
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -21,7 +22,7 @@ def index():
 @app.route('/run_imgMatch/')
 def image_match():
     socketio.emit('request img', 'request images from PI')
-    run_app()
+    # run_app()
     return "Image process done"
 
 
@@ -73,7 +74,7 @@ def receive_img(data):
 
 @socketio.on('img_data_3')
 def receive_img(data):
-    global IMG_3
+    global IMG_1, IMG_2, IMG_3
     data_3_decoded = base64.b64decode(data)
     IMG_3 = np.frombuffer(data_3_decoded, dtype=np.uint8)
     print('Image 3 received')
