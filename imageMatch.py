@@ -75,7 +75,7 @@ def img_match(img_name, img_temp):
 def run_app(array_1, array_2, array_3):
     start_1 = timeit.default_timer()
     img_template = cv.imread("photo/test_template.jpeg", cv.IMREAD_GRAYSCALE)  # Read template image
-    img_template_color = cv.imread("photo/test_template_dot.jpeg", cv.IMREAD_COLOR)
+    # img_template_color = cv.imread("photo/test_template_dot.jpeg", cv.IMREAD_COLOR)
     img1 = cv.imdecode(array_1, cv.IMREAD_GRAYSCALE)  # Read first image
     img1 = cv.resize(img1, (0, 0), fx=0.5, fy=0.5)
     p1 = img_match(img1, img_template)
@@ -93,6 +93,7 @@ def run_app(array_1, array_2, array_3):
     center, r = get_circle(p1, p2, p3)
     # -----show result----------------------------------------------------------
     print("Camera position: ", center)
+
     print("Radius: ", r)
     # cv.circle(img_template_color, (int(p1[0]), int(p1[1])), 5, (255, 0, 0), 5)
     # cv.circle(img_template_color, (int(p2[0]), int(p2[1])), 5, (255, 0, 0), 5)
@@ -100,7 +101,7 @@ def run_app(array_1, array_2, array_3):
     # cv.circle(img_template_color, (int(center[0]), int(center[1])), 5, (255, 0, 0), 5)
     # cv.circle(img_template_color, (562, 350), int(r), (255, 0, 0), 5)
     # show("show", img_template_color)
-
+    return center
 
 
 # Use this code to run img match script alone.

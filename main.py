@@ -12,11 +12,18 @@ PI_STATUS = False
 IMG_1 = 0
 IMG_2 = 0
 IMG_3 = 0
-
+CAM_POS = [0, 0]
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/addtocart/')
+def add_to_cart():
+
+    return render_template('addtocart.html')
+
 
 
 @app.route('/run_imgMatch/')
@@ -74,11 +81,18 @@ def receive_img(data):
 
 @socketio.on('img_data_3')
 def receive_img(data):
-    global IMG_1, IMG_2, IMG_3
+    global IMG_1, IMG_2, IMG_3, CAM_POS
     data_3_decoded = base64.b64decode(data)
     IMG_3 = np.frombuffer(data_3_decoded, dtype=np.uint8)
     print('Image 3 received')
-    run_app(IMG_1, IMG_2, IMG_3)
+    CAM_POS = run_app(IMG_1, IMG_2, IMG_3)
+
+
+
+
+
+
+
 
 
 if __name__ == '__main__':
