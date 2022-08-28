@@ -88,7 +88,7 @@ def run_app(array_1, array_2, array_3):
     img_template = cv.imread("photo/real_template.png", cv.IMREAD_GRAYSCALE)  # Read template image
     # img_template_color = cv.imread("photo/test_template_dot.jpeg", cv.IMREAD_COLOR)
     img1 = cv.imdecode(array_1, cv.IMREAD_GRAYSCALE)  # Read first image
-    img1 = cv.resize(img1, (0, 0), fx=0.8, fy=0.8)
+    img1 = cv.resize(img1, (0, 0), fx=0.5, fy=0.5)
     p1 = img_match(img1, img_template)
     img1 = 0
     img2 = cv.imdecode(array_2, cv.IMREAD_GRAYSCALE)  # Read second image
