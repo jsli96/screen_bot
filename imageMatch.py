@@ -88,15 +88,15 @@ def run_app(array_1, array_2, array_3):
     img_template = cv.imread("photo/real_template.png", cv.IMREAD_GRAYSCALE)  # Read template image
     # img_template_color = cv.imread("photo/test_template_dot.jpeg", cv.IMREAD_COLOR)
     img1 = cv.imdecode(array_1, cv.IMREAD_GRAYSCALE)  # Read first image
-    img1 = cv.resize(img1, (0, 0), fx=0.25, fy=0.25)
+    img1 = cv.resize(img1, (0, 0), fx=0.5, fy=0.5)
     p1 = img_match(img1, img_template)
     img1 = 0
     img2 = cv.imdecode(array_2, cv.IMREAD_GRAYSCALE)  # Read second image
-    img2 = cv.resize(img2, (0, 0), fx=0.25, fy=0.25)
+    img2 = cv.resize(img2, (0, 0), fx=0.5, fy=0.5)
     p2 = img_match(img2, img_template)
     img2 = 0
     img3 = cv.imdecode(array_3, cv.IMREAD_GRAYSCALE)  # Read third image
-    img3 = cv.resize(img3, (0, 0), fx=0.25, fy=0.25)
+    img3 = cv.resize(img3, (0, 0), fx=0.5, fy=0.5)
     p3 = img_match(img3, img_template)
     img3 = 0
     stop_1 = timeit.default_timer()
