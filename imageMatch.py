@@ -1,9 +1,20 @@
+import math
+
 import numpy as np
 import cv2 as cv
 import timeit
 
 MIN_MATCH_COUNT = 10
 FLANN_INDEX_KD_TREE = 0
+
+
+def get_angle_length(cam_pos, target_pos, p1_point):
+    distance = math.sqrt(((cam_pos[0]-target_pos[0]) ** 2) + ((cam_pos[1]-target_pos[1]) ** 2))
+    length_1 = math.sqrt(((cam_pos[0]-p1_point[0]) ** 2) + ((cam_pos[1]-p1_point[1]) ** 2))
+    length_2 = math.sqrt(((p1_point[0] - target_pos[0]) ** 2) + ((p1_point[1] - target_pos[1]) ** 2))
+    angle = math.degrees((length_2 * length_2 - distance * distance - length_1 * length_1) / (-2 * distance * length_1))
+    real_angle = angle - 90
+    return  distance, real_angle
 
 
 def get_circle(p1, p2, p3):
@@ -74,7 +85,7 @@ def img_match(img_name, img_temp):
 
 def run_app(array_1, array_2, array_3):
     start_1 = timeit.default_timer()
-    img_template = cv.imread("photo/test_template.jpeg", cv.IMREAD_GRAYSCALE)  # Read template image
+    img_template = cv.imread("photo/real_template.png", cv.IMREAD_GRAYSCALE)  # Read template image
     # img_template_color = cv.imread("photo/test_template_dot.jpeg", cv.IMREAD_COLOR)
     img1 = cv.imdecode(array_1, cv.IMREAD_GRAYSCALE)  # Read first image
     img1 = cv.resize(img1, (0, 0), fx=0.5, fy=0.5)
@@ -91,17 +102,17 @@ def run_app(array_1, array_2, array_3):
     stop_1 = timeit.default_timer()
     print('Processing Time: ', stop_1 - start_1)
     center, r = get_circle(p1, p2, p3)
-    # -----show result----------------------------------------------------------
-    print("Camera position: ", center)
 
-    print("Radius: ", r)
+    # -----show result----------------------------------------------------------
+    # print("Camera position: ", center)
+    # print("Radius: ", r)
     # cv.circle(img_template_color, (int(p1[0]), int(p1[1])), 5, (255, 0, 0), 5)
     # cv.circle(img_template_color, (int(p2[0]), int(p2[1])), 5, (255, 0, 0), 5)
     # cv.circle(img_template_color, (int(p3[0]), int(p3[1])), 5, (255, 0, 0), 5)
     # cv.circle(img_template_color, (int(center[0]), int(center[1])), 5, (255, 0, 0), 5)
     # cv.circle(img_template_color, (562, 350), int(r), (255, 0, 0), 5)
     # show("show", img_template_color)
-    return center
+    return center, p1
 
 
 # Use this code to run img match script alone.

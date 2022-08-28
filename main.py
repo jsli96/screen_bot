@@ -13,6 +13,7 @@ IMG_1 = 0
 IMG_2 = 0
 IMG_3 = 0
 CAM_POS = [0, 0]
+P1 = [0, 0]
 
 @app.route('/')
 def index():
@@ -21,7 +22,9 @@ def index():
 
 @app.route('/addtocart/')
 def add_to_cart():
-
+    global CAM_POS, P1
+    d, a = get_angle_length(CAM_POS, [312, 500], P1)
+    socketio.emit("commands", (d, a))
     return render_template('addtocart.html')
 
 
@@ -81,11 +84,13 @@ def receive_img(data):
 
 @socketio.on('img_data_3')
 def receive_img(data):
-    global IMG_1, IMG_2, IMG_3, CAM_POS
+    global IMG_1, IMG_2, IMG_3, CAM_POS, P1
     data_3_decoded = base64.b64decode(data)
     IMG_3 = np.frombuffer(data_3_decoded, dtype=np.uint8)
     print('Image 3 received')
-    CAM_POS = run_app(IMG_1, IMG_2, IMG_3)
+    CAM_POS, P1 = run_app(IMG_1, IMG_2, IMG_3)
+    print("Camera position: ", CAM_POS)
+    print("P1: ", P1)
 
 
 
