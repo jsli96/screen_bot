@@ -1,5 +1,4 @@
 import math
-
 import numpy as np
 import cv2 as cv
 import timeit
@@ -12,9 +11,13 @@ def get_angle_length(cam_pos, target_pos, p1_point):
     distance = math.sqrt(((cam_pos[0]-target_pos[0]) ** 2) + ((cam_pos[1]-target_pos[1]) ** 2))
     length_1 = math.sqrt(((cam_pos[0]-p1_point[0]) ** 2) + ((cam_pos[1]-p1_point[1]) ** 2))
     length_2 = math.sqrt(((p1_point[0] - target_pos[0]) ** 2) + ((p1_point[1] - target_pos[1]) ** 2))
-    angle = math.degrees((length_2 * length_2 - distance * distance - length_1 * length_1) / (-2 * distance * length_1))
+    angle = math.degrees(math.acos((distance * distance + length_1 * length_1 - length_2 * length_2) /
+                                   (-2 * distance * length_1)))
     real_angle = angle - 90
-    return distance, real_angle
+    real_distance = distance * 0.29104
+    temp = round(real_distance / 2.5)
+    real_distance = temp * 2.5
+    return real_distance, real_angle
 
 
 def get_circle(p1, p2, p3):
