@@ -23,7 +23,7 @@ def index():
 @app.route('/addtocart/')
 def add_to_cart():
     global CAM_POS, P1
-    d, a = get_angle_length(CAM_POS, [330, 150], P1)
+    d, a = get_angle_length(CAM_POS, [950, 300], P1)
     print("distance: ", d)
     print("angle: ", a)
     socketio.emit("distance", d)
