@@ -23,10 +23,9 @@ def index():
 @app.route('/addtocart/')
 def add_to_cart():
     global CAM_POS, P1
-    render_template('addtocart.html')
     d, a = get_angle_length([500,200], [312, 500], [100,100])
     socketio.emit("commands", (d, a))
-
+    return render_template('addtocart.html')
 
 
 
