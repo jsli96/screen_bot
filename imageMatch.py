@@ -14,9 +14,9 @@ def get_angle_length(cam_pos, target_pos, p1_point):
     angle = math.degrees(math.acos((distance * distance + length_1 * length_1 - length_2 * length_2) /
                                    (2 * distance * length_1)))
     real_angle = angle + 90
-    real_distance = distance * 0.29104
-    temp = round(real_distance / 2.5)
-    real_distance = temp * 2.5
+    real_distance = distance * 0.28442
+    temp = round(real_distance / 5)
+    real_distance = temp * 5
     return real_distance, real_angle
 
 
