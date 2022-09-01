@@ -31,6 +31,11 @@ def add_to_cart():
     return render_template('addtocart.html')
 
 
+@app.route('/checkout/')
+def close_sys():
+    socketio.emit("shut_down")
+    return render_template('checkout.html')
+
 
 @app.route('/run_imgMatch/')
 def image_match():
