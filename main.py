@@ -25,10 +25,10 @@ def index():
 def add_to_cart():
     global CAM_POS, P1
     d, a = get_angle_length(CAM_POS, [940, 480], P1)
+    send_tuple = (d, a)
     print("distance: ", d)
     print("angle: ", a)
-    socketio.emit("angle", a)
-    socketio.emit("distance", d)
+    socketio.emit("distance_angle", send_tuple)
     return render_template('addtocart.html')
 
 
