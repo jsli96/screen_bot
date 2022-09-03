@@ -34,6 +34,7 @@ def add_to_cart():
     socketio.emit("receive_data", a_1)
     socketio.emit("receive_data", d_2)
     socketio.emit("receive_data", a_2)
+    socketio.emit("data_sent", "Run")
     return render_template('addtocart.html')
 
 
