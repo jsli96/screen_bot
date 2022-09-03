@@ -8,8 +8,8 @@ FLANN_INDEX_KD_TREE = 0
 
 
 def get_angle_length(cam_pos, target_pos, p1_point):
-    distance = math.sqrt(((cam_pos[0]-target_pos[0]) ** 2) + ((cam_pos[1]-target_pos[1]) ** 2))
-    length_1 = math.sqrt(((cam_pos[0]-p1_point[0]) ** 2) + ((cam_pos[1]-p1_point[1]) ** 2))
+    distance = math.sqrt(((cam_pos[0] - target_pos[0]) ** 2) + ((cam_pos[1] - target_pos[1]) ** 2))
+    length_1 = math.sqrt(((cam_pos[0] - p1_point[0]) ** 2) + ((cam_pos[1] - p1_point[1]) ** 2))
     length_2 = math.sqrt(((p1_point[0] - target_pos[0]) ** 2) + ((p1_point[1] - target_pos[1]) ** 2))
     angle = math.degrees(math.acos((distance * distance + length_1 * length_1 - length_2 * length_2) /
                                    (2 * distance * length_1)))
@@ -28,10 +28,10 @@ def get_circle(p1, p2, p3):
     if abs(det) < 1.0e-6:
         return None, np.inf
     # Center of circle
-    cx = (bc*(p2[1] - p3[1]) - cd*(p1[1] - p2[1])) / det
+    cx = (bc * (p2[1] - p3[1]) - cd * (p1[1] - p2[1])) / det
     cy = ((p1[0] - p2[0]) * cd - (p2[0] - p3[0]) * bc) / det
     # Radius of circle
-    radius = np.sqrt((cx - p1[0])**2 + (cy - p1[1])**2)
+    radius = np.sqrt((cx - p1[0]) ** 2 + (cy - p1[1]) ** 2)
     return (cx, cy), radius
 
 
@@ -82,6 +82,7 @@ def img_match(img_name, img_temp):
     else:
         print("Not Enough matches are found")
         matches_mask = None
+        return None
     draw_params = dict(matchColor=(0, 255, 0), singlePointColor=None,
                        matchesMask=matches_mask, flags=2)
 
@@ -104,7 +105,10 @@ def run_app(array_1, array_2, array_3):
     img3 = 0
     stop_1 = timeit.default_timer()
     print('Processing Time: ', stop_1 - start_1)
-    center, r = get_circle(p1, p2, p3)
+    if p1 is not None and p2 is not None and p3 is not None:
+        center, r = get_circle(p1, p2, p3)
+    else:
+        center = 0
 
     # -----show result----------------------------------------------------------
     # print("Camera position: ", center)
@@ -116,7 +120,6 @@ def run_app(array_1, array_2, array_3):
     # cv.circle(img_template_color, (562, 350), int(r), (255, 0, 0), 5)
     # show("show", img_template_color)
     return center, p1
-
 
 # Use this code to run img match script alone.
 # run_app()
@@ -146,6 +149,3 @@ def run_app(array_1, array_2, array_3):
 # data_3_array = np.fromstring(data_3_decoded, dtype=np.uint8)
 #
 # run_app(data_1_array, data_2_array, data_3_array)
-
-
-

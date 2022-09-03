@@ -15,6 +15,7 @@ IMG_3 = 0
 CAM_POS = [0, 0]
 P1 = [0, 0]
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -41,35 +42,8 @@ def close_sys():
     return render_template('checkout.html')
 
 
-@app.route('/run_imgMatch/')
-def image_match():
-    socketio.emit('request img', 'request images from PI')
-    # run_app()
-    return "Image process done"
-
-
-@app.route('/pi_send_img/')
-def pi_connect():
-    global PI_STATUS
-    PI_STATUS = True
-    return "pi connected!"
-
-
-@app.route('/pi_status_connected/')
-def pi_status_t():
-    global PI_STATUS
-    PI_STATUS = True
-
-
-@app.route('/pi_status_disconnected/')
-def pi_status_f():
-    global PI_STATUS
-    PI_STATUS = False
-
-
 @socketio.on('This is test in main function')
 def show_message(data):
-    socketio.emit('request img', 'I\'m server, I want a image from you!')
     print('received message: ' + data)
 
 
