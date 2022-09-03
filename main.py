@@ -24,21 +24,22 @@ def index():
 @app.route('/addtocart/')
 def add_to_cart():
     global CAM_POS, P1
-    d, a = get_angle_length(CAM_POS, [940, 480], P1)
-    send_tuple = (d, a)
-    print("distance: ", d)
-    print("angle: ", a)
-    socketio.emit("distance_angle", send_tuple)
+    d_1, a_1 = get_angle_length(CAM_POS, [940, 480], P1)
+    d_2, a_2 = get_angle_length(CAM_POS, [180, 360], P1)
+    send_tuple_1 = (d_1, a_1, d_2, a_2)
+    print("distance_1: ", d_1)
+    print("angle_1: ", a_1)
+    print("distance_2: ", d_2)
+    print("angle_2: ", a_2)
+    socketio.emit("distance_angle", send_tuple_1)
     return render_template('addtocart.html')
 
 
 @app.route('/checkout/')
 def close_sys():
     d, a = get_angle_length(CAM_POS, [1500, 650], P1)
-    print("distance: ", d)
-    print("angle: ", a)
-    socketio.emit("distance", d)
-    socketio.emit("shut_down", a)
+    send_tuple = (d, a)
+    socketio.emit("checkout_d_a", send_tuple)
     return render_template('checkout.html')
 
 
