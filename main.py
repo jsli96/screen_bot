@@ -30,7 +30,10 @@ def add_to_cart():
     print("angle_1: ", a_1)
     print("distance_2: ", d_2)
     print("angle_2: ", a_2)
-    socketio.emit("distance_angle", ("d_1", "a_1", "d_2", "a_2"))
+    socketio.emit("receive_data", d_1)
+    socketio.emit("receive_data", a_1)
+    socketio.emit("receive_data", d_2)
+    socketio.emit("receive_data", a_2)
     return render_template('addtocart.html')
 
 
@@ -39,7 +42,8 @@ def close_sys():
     d, a = get_angle_length(CAM_POS, [1500, 650], P1)
     print("d_checkout", d)
     print("a_checkout", a)
-    socketio.emit("checkout_d_a", (d, a))
+    socketio.emit("receive_data", d)
+    socketio.emit("receive_data", a)
     socketio.emit("shut_down", "shut down script")
     return render_template('checkout.html')
 
