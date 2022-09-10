@@ -89,7 +89,7 @@ def img_match(img_name, img_temp):
 
 def run_app(array_1, array_2, array_3):
     start_1 = timeit.default_timer()
-    img_template = cv.imread("photo/real_template_dog.png", cv.IMREAD_GRAYSCALE)  # Read template image
+    img_template = cv.imread("photo/evaluation_template_1.png", cv.IMREAD_GRAYSCALE)  # Read template image
     # img_template_color = cv.imread("photo/test_template_dot.jpeg", cv.IMREAD_COLOR)
     img1 = cv.imdecode(array_1, cv.IMREAD_GRAYSCALE)  # Read first image
     img1 = cv.resize(img1, (0, 0), fx=0.5, fy=0.5)
