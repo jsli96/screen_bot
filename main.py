@@ -84,6 +84,10 @@ def receive_img(data):
     CAM_POS, P1 = run_app(IMG_1, IMG_2, IMG_3)
     print("Camera position: ", CAM_POS)
     print("P1: ", P1)
+    #OpenCV evaluation code, comment below if needs run
+    d_1, a_1 = get_angle_length(CAM_POS, [192, 245], P1)
+    print("distance_1: ", d_1)
+    print("angle_1: ", a_1)
 
 
 
