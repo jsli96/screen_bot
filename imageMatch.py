@@ -118,6 +118,7 @@ def run_app(array_1, array_2, array_3):
     else:
         center = 0
 
+
     # -----show result----------------------------------------------------------
     # print("Camera position: ", center)
     # print("Radius: ", r)
