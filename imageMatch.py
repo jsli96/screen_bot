@@ -55,7 +55,7 @@ def img_match(img_name, img_temp):
     index_params = dict(algorithm=FLANN_INDEX_KD_TREE, trees=5)
     search_params = dict(checks=50)
     flann = cv.FlannBasedMatcher(index_params, search_params)
-    matches = flann.knnMatch(des, des_tem, k=3)
+    matches = flann.knnMatch(des, des_tem, k=2)
     #BF match
     # bf = cv.BFMatcher()
     # matches = bf.knnMatch(des, des_tem, k=2)
