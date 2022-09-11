@@ -52,13 +52,13 @@ def img_match(img_name, img_temp):
     kp, des = sift.detectAndCompute(img_name, None)
     kp_tem, des_tem = sift.detectAndCompute(img_temp, None)
     # Create FLANN match
-    # index_params = dict(algorithm=FLANN_INDEX_KD_TREE, trees=5)
-    # search_params = dict(checks=50)
-    # flann = cv.FlannBasedMatcher(index_params, search_params)
-    # matches = flann.knnMatch(des, des_tem, k=2)
+    index_params = dict(algorithm=FLANN_INDEX_KD_TREE, trees=5)
+    search_params = dict(checks=50)
+    flann = cv.FlannBasedMatcher(index_params, search_params)
+    matches = flann.knnMatch(des, des_tem, k=2)
     #BF match
-    bf = cv.BFMatcher()
-    matches = bf.knnMatch(des_tem, des, k=2)
+    # bf = cv.BFMatcher()
+    # matches = bf.knnMatch(des, des_tem, k=2)
     good = []
     # Filter results
     for m, n in matches:
