@@ -3,7 +3,7 @@ import numpy as np
 import cv2 as cv
 import timeit
 
-MIN_MATCH_COUNT = 7
+MIN_MATCH_COUNT = 5
 FLANN_INDEX_KD_TREE = 0
 
 
