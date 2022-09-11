@@ -58,7 +58,7 @@ def img_match(img_name, img_temp):
     # matches = flann.knnMatch(des, des_tem, k=2)
     #BF match
     bf = cv.BFMatcher()
-    matches = bf.knnMatch(des, des_tem, k=2)
+    matches = bf.knnMatch(des_tem, des, k=2)
     good = []
     # Filter results
     for m, n in matches:
