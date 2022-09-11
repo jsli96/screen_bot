@@ -92,7 +92,7 @@ def img_match(img_name, img_temp):
 
 def run_app(array_1, array_2, array_3):
     start_1 = timeit.default_timer()
-    img_template = cv.imread("photo/real_template_dog.png", cv.IMREAD_GRAYSCALE)  # Read template image
+    img_template = cv.imread("photo/evaluation_template_4.jpg", cv.IMREAD_GRAYSCALE)  # Read template image
     # img_template_color = cv.imread("photo/test_template_dot.jpeg", cv.IMREAD_COLOR)
     img1 = cv.imdecode(array_1, cv.IMREAD_GRAYSCALE)  # Read first image
     img1 = cv.resize(img1, (0, 0), fx=0.5, fy=0.5)
@@ -111,7 +111,7 @@ def run_app(array_1, array_2, array_3):
     if p1 is not None and p2 is not None and p3 is not None:
         center, r = get_circle(p1, p2, p3)
         # OpenCV evaluation code, comment below if needs run
-        d_1, a_1 = get_angle_length(center, [960, 540], p1)
+        d_1, a_1 = get_angle_length(center, [1330, 625], p1)
         print("distance_1: ", d_1)
         print("angle_1: ", a_1)
     else:
