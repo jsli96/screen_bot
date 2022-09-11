@@ -107,6 +107,10 @@ def run_app(array_1, array_2, array_3):
     print('Processing Time: ', stop_1 - start_1)
     if p1 is not None and p2 is not None and p3 is not None:
         center, r = get_circle(p1, p2, p3)
+        # OpenCV evaluation code, comment below if needs run
+        d_1, a_1 = get_angle_length(center, [192, 245], p1)
+        print("distance_1: ", d_1)
+        print("angle_1: ", a_1)
     else:
         center = 0
 
