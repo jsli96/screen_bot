@@ -40,12 +40,12 @@ def add_to_cart():
 
 @app.route('/checkout/')
 def close_sys():
-    d, a = get_angle_length(CAM_POS, [1500, 650], P1)
-    print("d_checkout", d)
-    print("a_checkout", a)
-    socketio.emit("receive_data", d)
-    socketio.emit("receive_data", a)
-    socketio.emit("shut_down", "shut down script")
+    # d, a = get_angle_length(CAM_POS, [1500, 650], P1)
+    # print("d_checkout", d)
+    # print("a_checkout", a)
+    # socketio.emit("receive_data", d)
+    # socketio.emit("receive_data", a)
+    # socketio.emit("shut_down", "shut down script")
     return render_template('checkout.html')
 
 
