@@ -1,22 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" href="/static/style.css">
 <head>
     <meta charset="UTF-8">
     <title>Customize</title>
 </head>
 <body>
-<h1>Customize your drink</h1>
-<p>Topping (Choose One)</p>
-<button>Fresh</button>
-<button>Cheese foam</button>
-<p>Sugar Level (Chose One)</p>
-<button>No sugar (0%)</button>
-<button>Light sugar (30%)</button>
-<button>Half sugar (50%)</button>
-<button>Less sugar (70%)</button>
-<button>Regular sugar (100%)</button>
+<div class="header_container">
+    <h1>SMart Tea</h1>
+    <p>Welcome to Smart Tea cafe</p>
+</div>
 
-<p>Ready to Checkout?</p>
-<button onclick="location.href='/checkout/'">Checkout</button>
+<div class="item_container">
+    <div class="item_title">
+        <h2>Customize your drink</h2>
+        <p>Topping (Choose One)</p>
+    </div>
+    <div class="item_1">
+        <h4>Avocado Tea</h4>
+        <p></p>
+        <button type="button" name="SMart burger">Fresh</button>
+        <button type="button" name="SMart burger">Cheese foam (+$0.55)</button>
+        <p>Sugar Level (Chose One)</p>
+        <button>No sugar (0%)</button>
+        <button>Light sugar (30%)</button>
+        <button>Half sugar (50%)</button>
+        <button>Less sugar (70%)</button>
+        <button>Regular sugar (100%)</button>
+    </div>
+
+    <p>Ready to Checkout?</p>
+    <button onclick="location.href='/checkout/'">Checkout</button>
+</div>
 </body>
 </html>
