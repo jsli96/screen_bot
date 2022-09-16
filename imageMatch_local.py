@@ -92,9 +92,9 @@ def img_match(img_name, img_temp):
 
 def run_app():
     start_1 = timeit.default_timer()
-    img_template = cv.imread("photo/evaluation_template_2.jpg", cv.IMREAD_GRAYSCALE)  # Read template image
+    img_template = cv.imread("photo/test_template.jpeg", cv.IMREAD_GRAYSCALE)  # Read template image
     img_template = cv.resize(img_template, (0, 0), fx=1, fy=1)
-    img_template_color = cv.imread("photo/evaluation_template_2.jpg", cv.IMREAD_COLOR)
+    img_template_color = cv.imread("photo/test_template.jpeg", cv.IMREAD_COLOR)
     img1 = cv.imread("test_images/test_1.jpg", cv.IMREAD_GRAYSCALE)  # Read first image
     img1 = cv.resize(img1, (0, 0), fx=1, fy=1)
     p1 = img_match(img1, img_template)
@@ -109,7 +109,7 @@ def run_app():
     if p1 is not None and p2 is not None and p3 is not None:
         center, r = get_circle(p1, p2, p3)
         # OpenCV evaluation code, comment below if needs run
-        d_1, a_1 = get_angle_length(center, [192, 170], p1)
+        d_1, a_1 = get_angle_length(center, [320, 900], p1)
         print("distance_1: ", d_1)
         print("angle_1: ", a_1)
     else:
@@ -118,11 +118,11 @@ def run_app():
     # -----show result----------------------------------------------------------
     print("Camera position: ", center)
     # print("Radius: ", r)
-    cv.circle(img_template_color, (int(p1[0]), int(p1[1])), 5, (255, 0, 0), 5)
-    cv.circle(img_template_color, (int(p2[0]), int(p2[1])), 5, (255, 0, 0), 5)
-    cv.circle(img_template_color, (int(p3[0]), int(p3[1])), 5, (255, 0, 0), 5)
+    cv.circle(img_template_color, (int(p1[0]), int(p1[1])), 5, (255, 255, 0), 5)
+    cv.circle(img_template_color, (int(p2[0]), int(p2[1])), 5, (255, 255, 0), 5)
+    cv.circle(img_template_color, (int(p3[0]), int(p3[1])), 5, (255, 255, 0), 5)
     cv.circle(img_template_color, (int(center[0]), int(center[1])), 5, (0, 255, 0), 5)
-    cv.circle(img_template_color, (850, 160), 5, (0, 0, 255), 5)
+    cv.circle(img_template_color, (320, 900), 5, (0, 0, 255), 5)
     show("show", img_template_color)
 
 

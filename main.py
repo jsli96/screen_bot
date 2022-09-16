@@ -23,18 +23,18 @@ def index():
 
 @app.route('/addtocart/')
 def add_to_cart():
-    global CAM_POS, P1
-    d_1, a_1 = get_angle_length(CAM_POS, [940, 480], P1)
-    d_2, a_2 = get_angle_length(CAM_POS, [180, 360], P1)
-    print("distance_1: ", d_1)
-    print("angle_1: ", a_1)
-    print("distance_2: ", d_2)
-    print("angle_2: ", a_2)
-    socketio.emit("receive_data", d_1)
-    socketio.emit("receive_data", a_1)
-    socketio.emit("receive_data", d_2)
-    socketio.emit("receive_data", a_2)
-    socketio.emit("data_sent", "Run")
+    # global CAM_POS, P1
+    # d_1, a_1 = get_angle_length(CAM_POS, [940, 480], P1)
+    # d_2, a_2 = get_angle_length(CAM_POS, [180, 360], P1)
+    # print("distance_1: ", d_1)
+    # print("angle_1: ", a_1)
+    # print("distance_2: ", d_2)
+    # print("angle_2: ", a_2)
+    # socketio.emit("receive_data", d_1)
+    # socketio.emit("receive_data", a_1)
+    # socketio.emit("receive_data", d_2)
+    # socketio.emit("receive_data", a_2)
+    # socketio.emit("data_sent", "Run")
     return render_template('addtocart.html')
 
 
