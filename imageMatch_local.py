@@ -47,7 +47,7 @@ def show(window, img):
             break
 
 
-def img_match(img_name, img_temp):
+def img_match(img_name, img_temp, img_template_color):
     sift = cv.SIFT_create()  # create SIFT detection
     kp, des = sift.detectAndCompute(img_name, None)
     kp_tem, des_tem = sift.detectAndCompute(img_temp, None)
@@ -79,9 +79,10 @@ def img_match(img_name, img_temp):
         dst_ctr = cv.perspectiveTransform(pts_ctr, m)
         p1_c = [dst_ctr[0][0][0], dst_ctr[0][0][1]]
         print("Image center point: ", p1_c)
-        return p1_c
         cv.polylines(img_template_color, [np.int32(dst)], True, (0, 128, 0), 5, cv.LINE_AA)
         cv.circle(img_template_color, [np.int32(dst_ctr)[0][0][0], np.int32(dst_ctr)[0][0][1]], 5, (255, 0, 0), 5)
+        return p1_c
+
     else:
         print("Not Enough matches are found")
         matches_mask = None
@@ -92,18 +93,18 @@ def img_match(img_name, img_temp):
 
 def run_app():
     start_1 = timeit.default_timer()
-    img_template = cv.imread("photo/test_template.jpeg", cv.IMREAD_GRAYSCALE)  # Read template image
+    img_template = cv.imread("photo/test.png", cv.IMREAD_GRAYSCALE)  # Read template image
     img_template = cv.resize(img_template, (0, 0), fx=1, fy=1)
-    img_template_color = cv.imread("photo/test_template.jpeg", cv.IMREAD_COLOR)
+    img_template_color = cv.imread("photo/test.png", cv.IMREAD_COLOR)
     img1 = cv.imread("test_images/test_1.jpg", cv.IMREAD_GRAYSCALE)  # Read first image
-    img1 = cv.resize(img1, (0, 0), fx=1, fy=1)
-    p1 = img_match(img1, img_template)
+    img1 = cv.resize(img1, (0, 0), fx=0.5, fy=0.5)
+    p1 = img_match(img1, img_template, img_template_color)
     img2 = cv.imread("test_images/test_2.jpg", cv.IMREAD_GRAYSCALE)  # Read second image
-    img2 = cv.resize(img2, (0, 0), fx=1, fy=1)
-    p2 = img_match(img2, img_template)
+    img2 = cv.resize(img2, (0, 0), fx=0.5, fy=0.5)
+    p2 = img_match(img2, img_template, img_template_color)
     img3 = cv.imread("test_images/test_3.jpg", cv.IMREAD_GRAYSCALE)  # Read third image
-    img3 = cv.resize(img3, (0, 0), fx=1, fy=1)
-    p3 = img_match(img3, img_template)
+    img3 = cv.resize(img3, (0, 0), fx=0.5, fy=0.5)
+    p3 = img_match(img3, img_template, img_template_color)
     stop_1 = timeit.default_timer()
     print('Processing Time: ', stop_1 - start_1)
     if p1 is not None and p2 is not None and p3 is not None:
@@ -118,11 +119,11 @@ def run_app():
     # -----show result----------------------------------------------------------
     print("Camera position: ", center)
     # print("Radius: ", r)
-    cv.circle(img_template_color, (int(p1[0]), int(p1[1])), 5, (255, 255, 0), 5)
-    cv.circle(img_template_color, (int(p2[0]), int(p2[1])), 5, (255, 255, 0), 5)
-    cv.circle(img_template_color, (int(p3[0]), int(p3[1])), 5, (255, 255, 0), 5)
+    cv.circle(img_template_color, (int(p1[0]), int(p1[1])), 5, (255, 0, 0), 5)
+    cv.circle(img_template_color, (int(p2[0]), int(p2[1])), 5, (255, 0, 0), 5)
+    cv.circle(img_template_color, (int(p3[0]), int(p3[1])), 5, (255, 0, 0), 5)
     cv.circle(img_template_color, (int(center[0]), int(center[1])), 5, (0, 255, 0), 5)
-    cv.circle(img_template_color, (320, 900), 5, (0, 0, 255), 5)
+    # cv.circle(img_template_color, (320, 900), 5, (0, 0, 255), 5)
     show("show", img_template_color)
 
 
