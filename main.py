@@ -45,7 +45,7 @@ def close_sys():
     # print("a_checkout", a)
     # socketio.emit("receive_data", d)
     # socketio.emit("receive_data", a)
-    # socketio.emit("shut_down", "shut down script")
+    socketio.emit("shut_down", "shut down script")
     return render_template('checkout.html')
 
 
